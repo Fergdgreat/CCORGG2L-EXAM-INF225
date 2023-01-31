@@ -1,0 +1,233 @@
+Recursion
+public class Recursion {
+
+    public static void main(String[] args) {
+        
+
+        String fullName = "simon nikolai llamas";
+
+        removeLetter(fullName);
+    }
+
+    static void removeLetter(String str) {
+        if (str.length() == 0) {
+            return;
+        }
+        char c = str.charAt(0);
+        if (c != 'b' && c != 'c' && c != 'd' && c != 'f' && c != 'g' && c != 'h' && c != 'j' && c != 'k' && c != 'l' && c != 'm' && c != 'n' && c != 'p' && c != 'q' && c != 'r' && c != 's' && c != 't' && c != 'v' && c != 'w' && c != 'x' && c != 'y' && c != 'z') {
+            System.out.print(c);
+        }
+        removeLetter(str.substring(1));
+    }
+}
+
+
+Regex
+
+1. Password Validation
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Regex {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Pattern pattern = null;
+        Matcher match = null;
+        boolean isValid = false;
+
+        System.out.println("1. Password Validation");
+
+        System.out.print("Enter your surname: ");
+        String surname = scan.nextLine();
+        int surnameLength = surname.length();
+
+        System.out.print("Enter the password: ");
+        String password = scan.nextLine();
+
+        if (password.length() >= surnameLength) {
+            if (surname.startsWith("aeiouAEIOU")) {
+                pattern = Pattern.compile("^[^A-Za-z0-9]+.*");
+                match = pattern.matcher(password);
+                isValid = match.matches();
+            } else if (surname.endsWith("bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ")) {
+                pattern = Pattern.compile(".*[0-9]$");
+                match = pattern.matcher(password);
+                isValid = match.matches();
+            } else {
+                pattern = Pattern.compile("^[^" + surname + "]+$");
+                match = pattern.matcher(password);
+                isValid = match.matches();
+            }
+        }
+
+        if (isValid) {
+            System.out.println("Valid Password");
+        } else {
+            System.out.println("Invalid Password");
+        }
+    }
+}
+
+2. email address
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Regex {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Pattern pattern = null;
+        Matcher match = null;
+        boolean isValid = false;
+
+        System.out.println("2. Personal Email Address Validation");
+
+        System.out.print("Enter Email: ");
+        String email = scan.nextLine();
+
+        // Provide regex pattern
+        pattern = Pattern.compile("^[a-zA-Z0-9._]+\\d{2}@(gmail|ymail)\\.com$");
+
+        match = pattern.matcher(email);
+
+        isValid = match.matches();
+
+        if (isValid) {
+            System.out.println("Valid email!");
+        } else {
+            System.out.println("Invalid email!");
+        }
+    }
+}
+
+
+3. url validation
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Regex {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Pattern pattern = null;
+        Matcher match = null;
+        boolean isValid = false;
+
+      
+        System.out.println("3. URL Validation");
+
+        System.out.print("Enter URL: ");
+        String url = scan.nextLine();
+
+        pattern = Pattern.compile("^((http?:)?\\/\\/)?[\\w\\-]+(\\.[\\w\\-]+)+");
+
+        match = pattern.matcher(url);
+
+        isValid = match.matches();
+
+       
+        if (isValid) {
+            System.out.println("Valid URL!");} 
+        else {
+            System.out.println("Invalid URL!");}
+    
+    }
+}
+
+4. finding and retrieving files
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Regex {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Pattern pattern = null;
+        Matcher match = null;
+        boolean isValid = false;
+
+   System.out.println("4. Finding and retrieving files.");
+
+        String myfiles = "report.pptx ,project2019.xlsx, assignment2020.docx, registration2020.txt, helloworld.py, snake.java, hacker.cpp";
+
+         pattern = Pattern.compile("\\w+(\\.py|\\.java|\\.cpp)");
+        match = pattern.matcher(myfiles);
+
+        boolean found = false;
+
+        //5 hashtag
+        while (match.find()) {
+            System.out.println("I found the text " + match.group());
+            found = true;}
+
+        if (!found) {
+            System.out.println("No files found.");
+        }
+    }
+}
+
+5. Search and remove hashtag
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Regex {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Pattern pattern = null;
+        Matcher match = null;
+        boolean isValid = false;
+
+ System.out.println("5. Search and remove hashtag");
+
+        String tweet = "I'd pet a million stray pit bulls before I'd eat a single pink-slimy McBite. #McDStories http://bit.ly/wd0BDe";
+
+        tweet = tweet.replaceAll("#", "");
+
+        System.out.println(tweet);}
+}
+
+
+6. Search and remove URL
+
+public class Regex {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Pattern pattern = null;
+        Matcher match = null;
+        boolean isValid = false;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+System.out.println("6. Search and remove URL");
+
+        tweet = "The oldest living survivor of the Japanese Attack on Pearl Harbor in 1941 celebrated his upcoming 105th birthday at the National World War II Museum in New Orleans. Joseph Eskenazi of Redondo Beach, California, boarded a train Friday for the journey. http://apne.ws/AayqsiC";
+
+        
+        tweet = tweet.replaceAll("http://apne.ws/AayqsiC", "");
+
+        System.out.println(tweet);
+
+        //7 special character
+        System.out.println("7. Search and remove special characters");
+        
+
+        tweet = "Press On, three, was killed training this morning at Santa Anita - “musculoskeletal,” for now. He is the sixth dead horse at Cal tracks through the first three weeks of 2023. “Reform” is a ruse, “safe racing” a lie. Horseracing kills; it must end.";
+
+        tweet = tweet.replaceAll("[,|;|?]", "");
+
+        System.out.println(tweet);
+
+        scan.close();
+
+        
+    }
+}
